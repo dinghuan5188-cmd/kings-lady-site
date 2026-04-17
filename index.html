@@ -866,20 +866,26 @@
     </div>
   </footer>
 
-  <script>
-    function buyProduct(productName){
-      const subject = encodeURIComponent("[KING'S LADY] 상품 구매 문의");
-      const body = encodeURIComponent(
-        "안녕하세요.\n\n" +
-        "아래 상품 구매 문의드립니다.\n\n" +
-        "상품명: " + productName + "\n" +
-        "가격: ₩79,000\n\n" +
-        "색상/수량/연락처를 함께 회신 부탁드립니다.\n\n" +
-        "감사합니다."
-      );
-      window.location.href = "mailto:hharpyeagle@naver.com?subject=" + subject + "&body=" + body;
-    }
-  </script>
+<script>
+  function buyProduct(productName, price){
+    const subject = encodeURIComponent("[KING'S LADY] 상품 구매 문의");
+    const body = encodeURIComponent(
+      "안녕하세요.\n\n" +
+      "아래 상품 구매를 원합니다.\n\n" +
+      "상품명: " + productName + "\n" +
+      "가격: " + price + "\n" +
+      "수량: 1개\n\n" +
+      "성함:\n" +
+      "연락처:\n" +
+      "원하시는 색상/옵션:\n" +
+      "배송지:\n\n" +
+      "회신 부탁드립니다.\n감사합니다."
+    );
+
+    window.location.href =
+      "mailto:hharpyeagle@naver.com?subject=" + subject + "&body=" + body;
+  }
+</script>
 
 </body>
 </html>
