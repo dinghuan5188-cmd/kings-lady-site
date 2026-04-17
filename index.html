@@ -1,890 +1,188 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>KING'S LADY</title>
-  <style>
-    :root{
-      --bg:#f7f4ef;
-      --card:#ffffff;
-      --text:#111111;
-      --muted:#6f6f6f;
-      --line:#e9e2d8;
-      --accent:#c78852;
-      --dark:#111111;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KING'S LADY</title>
 
-    *{box-sizing:border-box;}
-    html{scroll-behavior:smooth;}
-    body{
-      margin:0;
-      font-family: Arial, Helvetica, sans-serif;
-      background:var(--bg);
-      color:var(--text);
-    }
+<style>
+body{
+  margin:0;
+  font-family:-apple-system, BlinkMacSystemFont;
+  background:#fff;
+  color:#111;
+}
 
-    a{text-decoration:none;color:inherit;}
-    img{display:block;width:100%;}
+header{
+  display:flex;
+  justify-content:space-between;
+  padding:20px;
+  border-bottom:1px solid #eee;
+}
 
-    .wrap{
-      max-width:1280px;
-      margin:0 auto;
-      padding:0 20px;
-    }
+.logo{
+  font-weight:700;
+}
 
-    .topbar{
-      position:sticky;
-      top:0;
-      z-index:100;
-      background:rgba(247,244,239,0.92);
-      backdrop-filter:blur(10px);
-      border-bottom:1px solid var(--line);
-    }
+.banner{
+  height:60vh;
+  background:#f5f5f5;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:28px;
+  font-weight:600;
+}
 
-    .topbar-inner{
-      min-height:72px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:20px;
-    }
+.section{
+  padding:20px;
+}
 
-    .brand{
-      font-size:24px;
-      font-weight:700;
-      letter-spacing:0.08em;
-    }
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:14px;
+}
 
-    .nav{
-      display:flex;
-      gap:24px;
-      font-size:14px;
-      color:var(--muted);
-    }
+.card{
+  background:#fff;
+}
 
-    .nav a:hover{color:var(--text);}
+.card img{
+  width:100%;
+  aspect-ratio:3/4;
+  object-fit:cover;
+}
 
-    .btn-line{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      padding:11px 18px;
-      border:1px solid var(--dark);
-      border-radius:999px;
-      font-size:13px;
-      background:#fff;
-      cursor:pointer;
-    }
+.name{
+  font-size:14px;
+  margin-top:8px;
+}
 
-    .hero{
-      padding:34px 0 18px;
-    }
+.price{
+  font-weight:700;
+  margin-top:4px;
+}
 
-    .hero-grid{
-      display:grid;
-      grid-template-columns:1.05fr 0.95fr;
-      gap:18px;
-    }
+.buy{
+  margin-top:8px;
+  padding:10px;
+  border:1px solid #111;
+  background:#fff;
+  width:100%;
+  cursor:pointer;
+}
 
-    .hero-copy,
-    .hero-photo,
-    .category-card,
-    .product-card,
-    .footer-box,
-    .brand-box{
-      background:var(--card);
-      border:1px solid var(--line);
-      border-radius:28px;
-      overflow:hidden;
-    }
-
-    .hero-copy{
-      padding:52px;
-      min-height:560px;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      background:linear-gradient(180deg,#fbf8f3 0%, #f1ebe3 100%);
-    }
-
-    .eyebrow{
-      font-size:12px;
-      letter-spacing:0.25em;
-      text-transform:uppercase;
-      color:var(--accent);
-      margin-bottom:18px;
-    }
-
-    h1{
-      margin:0;
-      font-size:62px;
-      line-height:1.06;
-      letter-spacing:-0.04em;
-    }
-
-    .hero-copy p{
-      margin:22px 0 0;
-      font-size:16px;
-      line-height:1.85;
-      color:var(--muted);
-      max-width:560px;
-    }
-
-    .hero-actions{
-      display:flex;
-      gap:12px;
-      flex-wrap:wrap;
-      margin-top:28px;
-    }
-
-    .btn-dark{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      padding:14px 22px;
-      border-radius:999px;
-      background:var(--dark);
-      color:#fff;
-      font-size:14px;
-      font-weight:600;
-      cursor:pointer;
-    }
-
-    .hero-photo{
-      min-height:560px;
-      position:relative;
-    }
-
-    .hero-photo img{
-      height:100%;
-      object-fit:cover;
-    }
-
-    .hero-badge{
-      position:absolute;
-      left:18px;
-      bottom:18px;
-      padding:14px 16px;
-      border-radius:18px;
-      background:rgba(255,255,255,0.92);
-      border:1px solid var(--line);
-      font-size:13px;
-      line-height:1.7;
-    }
-
-    .section{
-      padding:18px 0 18px;
-    }
-
-    .section-head{
-      display:flex;
-      justify-content:space-between;
-      align-items:end;
-      gap:16px;
-      margin-bottom:16px;
-    }
-
-    .section-head h2{
-      margin:0;
-      font-size:32px;
-      letter-spacing:-0.03em;
-    }
-
-    .section-head p{
-      margin:0;
-      max-width:560px;
-      color:var(--muted);
-      font-size:14px;
-      line-height:1.8;
-    }
-
-    .categories{
-      display:grid;
-      grid-template-columns:repeat(4,1fr);
-      gap:14px;
-    }
-
-    .category-card{
-      padding:24px;
-    }
-
-    .category-card .small{
-      font-size:12px;
-      letter-spacing:0.16em;
-      text-transform:uppercase;
-      color:var(--muted);
-      margin-bottom:10px;
-    }
-
-    .category-card h3{
-      margin:0 0 10px;
-      font-size:24px;
-    }
-
-    .category-card p{
-      margin:0;
-      color:var(--muted);
-      font-size:14px;
-      line-height:1.75;
-    }
-
-    .product-grid{
-      display:grid;
-      grid-template-columns:repeat(4,1fr);
-      gap:18px;
-    }
-
-    .product-card{
-      background:#fff;
-      border:1px solid var(--line);
-      border-radius:22px;
-      overflow:hidden;
-      box-shadow:0 4px 14px rgba(0,0,0,0.04);
-    }
-
-    .product-card img{
-      aspect-ratio:3/4;
-      object-fit:cover;
-      background:#f2f2f2;
-    }
-
-    .product-body{
-      padding:16px;
-    }
-
-    .tag{
-      display:inline-block;
-      font-size:11px;
-      padding:6px 10px;
-      border-radius:999px;
-      background:#f4efe8;
-      color:#7b5d47;
-      margin-bottom:10px;
-    }
-
-    .name{
-      margin:0;
-      font-size:15px;
-      line-height:1.55;
-      min-height:46px;
-      font-weight:700;
-    }
-
-    .sub{
-      margin:8px 0 10px;
-      font-size:13px;
-      line-height:1.7;
-      color:var(--muted);
-      min-height:42px;
-    }
-
-    .price{
-      font-size:24px;
-      font-weight:700;
-      margin:0 0 12px;
-    }
-
-    .buy{
-      width:100%;
-      border:1px solid var(--dark);
-      background:#fff;
-      padding:12px 14px;
-      border-radius:12px;
-      text-align:center;
-      font-size:14px;
-      cursor:pointer;
-      transition:all .2s ease;
-    }
-
-    .buy:hover{
-      background:#111;
-      color:#fff;
-    }
-
-    .brand-grid{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:16px;
-    }
-
-    .brand-box{
-      padding:34px;
-      min-height:220px;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      text-align:center;
-    }
-
-    .brand-box h3{
-      margin:0 0 16px;
-      font-size:34px;
-      line-height:1.35;
-    }
-
-    .brand-box p{
-      margin:0;
-      color:var(--muted);
-      line-height:1.8;
-      font-size:15px;
-    }
-
-    .footer{
-      padding:24px 0 40px;
-    }
-
-    .footer-grid{
-      display:grid;
-      grid-template-columns:1.1fr 0.9fr 0.9fr;
-      gap:14px;
-    }
-
-    .footer-box{
-      padding:24px;
-    }
-
-    .footer-box h4{
-      margin:0 0 12px;
-      font-size:18px;
-    }
-
-    .footer-box p,
-    .footer-box li{
-      margin:0;
-      font-size:14px;
-      color:var(--muted);
-      line-height:1.9;
-      list-style:none;
-    }
-
-    .footer-box ul{
-      margin:0;
-      padding:0;
-    }
-
-    @media (max-width: 1024px){
-      .hero-grid,
-      .brand-grid,
-      .footer-grid{
-        grid-template-columns:1fr;
-      }
-
-      .categories,
-      .product-grid{
-        grid-template-columns:repeat(2,1fr);
-      }
-
-      h1{font-size:46px;}
-      .hero-copy{min-height:auto;padding:34px 26px;}
-      .hero-photo{min-height:auto;}
-    }
-
-    @media (max-width: 640px){
-      .nav{display:none;}
-      .categories,
-      .product-grid{
-        grid-template-columns:1fr;
-      }
-      .brand{font-size:20px;}
-      h1{font-size:34px;}
-      .section-head h2{font-size:26px;}
-      .topbar-inner{min-height:64px;}
-      .hero-copy{padding:26px 20px;}
-    }
-  </style>
+footer{
+  background:#111;
+  color:#aaa;
+  padding:30px;
+  font-size:12px;
+  margin-top:40px;
+}
+</style>
 </head>
+
 <body>
 
-  <div class="topbar">
-    <div class="wrap topbar-inner">
-      <div class="brand">KING'S LADY</div>
-      <div class="nav">
-        <a href="#best">BEST</a>
-        <a href="#all">ALL ITEM</a>
-        <a href="#brand">BRAND</a>
-        <a href="#contact">CONTACT</a>
-      </div>
-      <a class="btn-line" href="mailto:hharpyeagle@naver.com">문의하기</a>
-    </div>
-  </div>
+<header>
+  <div class="logo">KING'S LADY</div>
+</header>
 
-  <section class="hero wrap">
-    <div class="hero-grid">
-      <div class="hero-copy">
-        <div class="eyebrow">Premium Pleats Collection</div>
-        <h1>움직임에 따라<br>완성되는 디자인</h1>
-        <p>
-          KING'S LADY는 플리츠의 섬세한 결, 가볍고 우아한 실루엣,
-          그리고 일상에 자연스럽게 스며드는 한국 감성을 담아낸
-          프리미엄 여성 셀렉트 브랜드입니다.
-        </p>
-        <div class="hero-actions">
-          <a class="btn-dark" href="#best">베스트 보기</a>
-          <a class="btn-line" href="#all">전체 상품 보기</a>
-        </div>
-      </div>
-      <div class="hero-photo">
-        <img src="Weixin%20Image_20260407163524_22_461.jpg" alt="메인 이미지">
-        <div class="hero-badge">
-          Premium Pleats Edit<br>
-          가볍고 우아한 데일리 스타일
-        </div>
-      </div>
-    </div>
-  </section>
+<div class="banner">
+  2026 SUMMER COLLECTION
+</div>
 
-  <section class="section wrap">
-    <div class="section-head">
-      <h2>카테고리</h2>
-      <p>ABLY 감성처럼 한눈에 보기 쉬운 구성으로 탑 중심의 셀렉션을 보여주는 메인 카테고리 구간입니다.</p>
-    </div>
-    <div class="categories">
-      <div class="category-card">
-        <div class="small">Category</div>
-        <h3>플라워 탑</h3>
-        <p>화사한 컬러감과 우아한 실루엣이 돋보이는 대표 라인</p>
-      </div>
-      <div class="category-card">
-        <div class="small">Category</div>
-        <h3>감성 탑</h3>
-        <p>차분한 무드와 부드러운 분위기의 데일리 플리츠 라인</p>
-      </div>
-      <div class="category-card">
-        <div class="small">Category</div>
-        <h3>아트 탑</h3>
-        <p>유니크한 프린트와 감각적인 무드의 포인트 아이템</p>
-      </div>
-      <div class="category-card">
-        <div class="small">Category</div>
-        <h3>릴리 탑</h3>
-        <p>모던하고 도시적인 무드로 완성하는 프리미엄 스타일</p>
-      </div>
-    </div>
-  </section>
+<div class="section">
+<div class="grid">
 
-  <section class="section wrap" id="best">
-    <div class="section-head">
-      <h2>BEST ITEM</h2>
-      <p>가장 먼저 보여주기 좋은 대표 상품입니다. 모든 가격은 ₩79,000으로 맞춰 두었습니다.</p>
-    </div>
+<!-- 商品1 -->
+<div class="card">
+<img src="Weixin%20Image_20260407163524_22_461.jpg">
+<div class="name">플라워 플리츠 탑</div>
+<div class="price">₩79,000</div>
+<button class="buy" onclick="buyProduct('플라워 플리츠 탑','₩79,000')">카카오로 주문하기</button>
+</div>
 
-    <div class="product-grid">
-      <div class="product-card">
-        <img src="Weixin%20Image_20260407163524_22_461.jpg" alt="민트 플라워 플리츠 탑">
-        <div class="product-body">
-          <div class="tag">BEST</div>
-          <p class="name">프리미엄 플라워 플리츠 탑 (민트)</p>
-          <p class="sub">화사한 플라워 패턴과 가벼운 플리츠 소재의 대표 컬러</p>
-          <div class="price">₩79,000</div>
-          <button class="buy" onclick="buyProduct('프리미엄 플라워 플리츠 탑 (민트)')">구매하기</button>
-        </div>
-      </div>
+<!-- 商品2 -->
+<div class="card">
+<img src="Weixin%20Image_20260407163525_23_461.jpg">
+<div class="name">감성 플리츠 탑</div>
+<div class="price">₩79,000</div>
+<button class="buy" onclick="buyProduct('감성 플리츠 탑','₩79,000')">카카오로 주문하기</button>
+</div>
 
-      <div class="product-card">
-        <img src="Weixin%20Image_20260407163525_23_461.jpg" alt="핑크 플라워 플리츠 탑">
-        <div class="product-body">
-          <div class="tag">HOT</div>
-          <p class="name">프리미엄 플라워 플리츠 탑 (핑크)</p>
-          <p class="sub">부드러운 컬러감으로 여성스러운 분위기를 완성하는 스타일</p>
-          <div class="price">₩79,000</div>
-          <button class="buy" onclick="buyProduct('프리미엄 플라워 플리츠 탑 (핑크)')">구매하기</button>
-        </div>
-      </div>
+<!-- 商品3 -->
+<div class="card">
+<img src="Weixin%20Image_20260407163525_24_461.jpg">
+<div class="name">아이보리 플리츠 탑</div>
+<div class="price">₩79,000</div>
+<button class="buy" onclick="buyProduct('아이보리 플리츠 탑','₩79,000')">카카오로 주문하기</button>
+</div>
 
-      <div class="product-card">
-        <img src="Weixin%20Image_20260407163525_24_461.jpg" alt="아이보리 플라워 플리츠 탑">
-        <div class="product-body">
-          <div class="tag">NEW</div>
-          <p class="name">프리미엄 플라워 플리츠 탑 (아이보리)</p>
-          <p class="sub">밝고 우아한 무드가 돋보이는 아이보리 베이스 스타일</p>
-          <div class="price">₩79,000</div>
-          <button class="buy" onclick="buyProduct('프리미엄 플라워 플리츠 탑 (아이보리)')">구매하기</button>
-        </div>
-      </div>
+<!-- 商品4 -->
+<div class="card">
+<img src="Weixin%20Image_20260407163526_25_461.jpg">
+<div class="name">블랙 플리츠 탑</div>
+<div class="price">₩79,000</div>
+<button class="buy" onclick="buyProduct('블랙 플리츠 탑','₩79,000')">카카오로 주문하기</button>
+</div>
 
-      <div class="product-card">
-        <img src="Weixin%20Image_20260407163526_25_461.jpg" alt="블랙 플라워 플리츠 탑">
-        <div class="product-body">
-          <div class="tag">MD PICK</div>
-          <p class="name">프리미엄 플라워 플리츠 탑 (블랙)</p>
-          <p class="sub">모던한 블랙 베이스로 세련된 분위기를 주는 포인트 탑</p>
-          <div class="price">₩79,000</div>
-          <button class="buy" onclick="buyProduct('프리미엄 플라워 플리츠 탑 (블랙)')">구매하기</button>
-        </div>
-      </div>
-    </div>
-  </section>
+<!-- 商品5 -->
+<div class="card">
+<img src="Weixin%20Image_20260407163604_26_461.jpg">
+<div class="name">플리츠 아트 탑</div>
+<div class="price">₩79,000</div>
+<button class="buy" onclick="buyProduct('플리츠 아트 탑','₩79,000')">카카오로 주문하기</button>
+</div>
 
-  <section class="section wrap" id="all">
-    <div class="section-head">
-      <h2>ALL ITEM</h2>
-      <p>현재 업로드한 전체 상품입니다. 계속 추가하면서 페이지를 확장할 수 있습니다.</p>
-    </div>
+<!-- 商品6 -->
+<div class="card">
+<img src="Weixin%20Image_20260407163605_27_461.jpg">
+<div class="name">베이지 플리츠 탑</div>
+<div class="price">₩79,000</div>
+<button class="buy" onclick="buyProduct('베이지 플리츠 탑','₩79,000')">카카오로 주문하기</button>
+</div>
 
-    <div class="product-grid">
+<!-- 商品7 -->
+<div class="card">
+<img src="Weixin%20Image_20260407163606_28_461.jpg">
+<div class="name">아이보리 아트 탑</div>
+<div class="price">₩79,000</div>
+<button class="buy" onclick="buyProduct('아이보리 아트 탑','₩79,000')">카카오로 주문하기</button>
+</div>
 
-      <div class="product-card">
-        <img src="Weixin%20Image_20260407163524_22_461.jpg" alt="민트 플라워 플리츠 탑">
-        <div class="product-body">
-          <div class="tag">FLOWER</div>
-          <p class="name">프리미엄 플라워 플리츠 탑 (민트)</p>
-          <p class="sub">화사한 민트 플라워 패턴으로 데일리 포인트 연출</p>
-          <div class="price">₩79,000</div>
-          <button class="buy" onclick="buyProduct('프리미엄 플라워 플리츠 탑 (민트)')">구매하기</button>
-        </div>
-      </div>
+<!-- 商品8 -->
+<div class="card">
+<img src="Weixin%20Image_20260407163607_29_461.png">
+<div class="name">그레이 플리츠 탑</div>
+<div class="price">₩79,000</div>
+<button class="buy" onclick="buyProduct('그레이 플리츠 탑','₩79,000')">카카오로 주문하기</button>
+</div>
 
-      <div class="product-card">
-        <img src="Weixin%20Image_20260407163525_23_461.jpg" alt="핑크 플라워 플리츠 탑">
-        <div class="product-body">
-          <div class="tag">FLOWER</div>
-          <p class="name">프리미엄 플라워 플리츠 탑 (핑크)</p>
-          <p class="sub">여성스러운 컬러감이 돋보이는 부드러운 분위기</p>
-          <div class="price">₩79,000</div>
-          <button class="buy" onclick="buyProduct('프리미엄 플라워 플리츠 탑 (핑크)')">구매하기</button>
-        </div>
-      </div>
+</div>
+</div>
 
-      <div class="product-card">
-        <img src="Weixin%20Image_20260407163525_24_461.jpg" alt="아이보리 플라워 플리츠 탑">
-        <div class="product-body">
-          <div class="tag">FLOWER</div>
-          <p class="name">프리미엄 플라워 플리츠 탑 (아이보리)</p>
-          <p class="sub">차분하고 고급스러운 분위기를 담은 아이보리 톤</p>
-          <div class="price">₩79,000</div>
-          <button class="buy" onclick="buyProduct('프리미엄 플라워 플리츠 탑 (아이보리)')">구매하기</button>
-        </div>
-      </div>
-
-      <div class="product-card">
-        <img src="Weixin%20Image_20260407163526_25_461.jpg" alt="블랙 플라워 플리츠 탑">
-        <div class="product-body">
-          <div class="tag">FLOWER</div>
-          <p class="name">프리미엄 플라워 플리츠 탑 (블랙)</p>
-          <p class="sub">모던한 블랙 컬러로 어디에나 잘 어울리는 데일리템</p>
-          <div class="price">₩79,000</div>
-          <button class="buy" onclick="buyProduct('프리미엄 플라워 플리츠 탑 (블랙)')">구매하기</button>
-        </div>
-      </div>
-
-      <div class="product-card">
-        <img src="Weixin%20Image_20260407163604_26_461.jpg" alt="플라워 아트 탑">
-        <div class="product-body">
-          <div class="tag">ART</div>
-          <p class="name">플라워 아트 플리츠 탑 (블랙)</p>
-          <p class="sub">블랙 베이스에 아트적인 플라워 무드를 담은 디자인</p>
-          <div class="price">₩79,000</div>
-          <button class="buy" onclick="buyProduct('플라워 아트 플리츠 탑 (블랙)')">구매하기</button>
-        </div>
-      </div>
-
-      <div class="product-card">
-        <img src="Weixin%20Image_20260407163605_27_461.jpg" alt="베이지 플라워 아트 탑">
-        <div class="product-body">
-          <div class="tag">ART</div>
-          <p class="name">플라워 아트 플리츠 탑 (베이지)</p>
-          <p class="sub">베이지 톤으로 부드럽고 고급스러운 무드를 표현</p>
-          <div class="price">₩79,000</div>
-          <button class="buy" onclick="buyProduct('플라워 아트 플리츠 탑 (베이지)')">구매하기</button>
-        </div>
-      </div>
-
-      <div class="product-card">
-        <img src="Weixin%20Image_20260407163606_28_461.jpg" alt="아이보리 플라워 아트 탑">
-        <div class="product-body">
-          <div class="tag">ART</div>
-          <p class="name">플라워 아트 플리츠 탑 (아이보리)</p>
-          <p class="sub">아이보리 컬러에 담백한 패턴이 돋보이는 스타일</p>
-          <div class="price">₩79,000</div>
-          <button class="buy" onclick="buyProduct('플라워 아트 플리츠 탑 (아이보리)')">구매하기</button>
-        </div>
-      </div>
-
-      <div class="product-card">
-        <img src="Weixin%20Image_20260407163607_29_461.png" alt="그레이 플라워 아트 탑">
-        <div class="product-body">
-          <div class="tag">ART</div>
-          <p class="name">플라워 아트 플리츠 탑 (그레이)</p>
-          <p class="sub">차분한 그레이 무드로 데일리하게 매치하기 좋은 상품</p>
-          <div class="price">₩79,000</div>
-          <button class="buy" onclick="buyProduct('플라워 아트 플리츠 탑 (그레이)')">구매하기</button>
-        </div>
-      </div>
-
-      <div class="product-card">
-        <img src="Weixin%20Image_20260407164255_40_461.jpg" alt="아이보리 릴리 플리츠 탑">
-        <div class="product-body">
-          <div class="tag">LILY</div>
-          <p class="name">릴리 플리츠 탑 (아이보리)</p>
-          <p class="sub">모던하고 세련된 플라워 라인으로 완성한 프리미엄 탑</p>
-          <div class="price">₩79,000</div>
-          <button class="buy" onclick="buyProduct('릴리 플리츠 탑 (아이보리)')">구매하기</button>
-        </div>
-      </div>
-
-      <div class="product-card">
-        <img src="Weixin%20Image_20260407164255_41_461.jpg" alt="차콜 릴리 플리츠 탑">
-        <div class="product-body">
-          <div class="tag">LILY</div>
-          <p class="name">릴리 플리츠 탑 (차콜)</p>
-          <p class="sub">짙은 차콜 컬러와 포인트 플라워 패턴이 돋보이는 상품</p>
-          <div class="price">₩79,000</div>
-          <button class="buy" onclick="buyProduct('릴리 플리츠 탑 (차콜)')">구매하기</button>
-        </div>
-      </div>
-
-      <div class="product-card">
-        <img src="Weixin%20Image_20260407164256_42_461.jpg" alt="블랙 릴리 플리츠 탑">
-        <div class="product-body">
-          <div class="tag">LILY</div>
-          <p class="name">릴리 플리츠 탑 (블랙)</p>
-          <p class="sub">블랙 베이스와 플라워 포인트가 강렬한 룩을 완성</p>
-          <div class="price">₩79,000</div>
-          <button class="buy" onclick="buyProduct('릴리 플리츠 탑 (블랙)')">구매하기</button>
-        </div>
-      </div>
-
-      <div class="product-card">
-        <img src="Weixin%20Image_20260407164303_51_461.jpg" alt="모노 플라워 플리츠 탑 블랙">
-        <div class="product-body">
-          <div class="tag">MONO</div>
-          <p class="name">모노 플라워 플리츠 탑 (블랙)</p>
-          <p class="sub">화이트 플라워와 블랙 베이스 조합의 모던한 무드</p>
-          <div class="price">₩79,000</div>
-          <button class="buy" onclick="buyProduct('모노 플라워 플리츠 탑 (블랙)')">구매하기</button>
-        </div>
-      </div>
-
-      <div class="product-card">
-        <img src="Weixin%20Image_20260407164304_52_461.jpg" alt="모노 플라워 플리츠 탑 베이지">
-        <div class="product-body">
-          <div class="tag">MONO</div>
-          <p class="name">모노 플라워 플리츠 탑 (베이지)</p>
-          <p class="sub">베이지 브라운 계열로 고급스럽게 완성한 데일리 탑</p>
-          <div class="price">₩79,000</div>
-          <button class="buy" onclick="buyProduct('모노 플라워 플리츠 탑 (베이지)')">구매하기</button>
-        </div>
-      </div>
-
-      <div class="product-card">
-        <img src="Weixin%20Image_20260407164305_53_461.jpg" alt="모노 플라워 플리츠 탑 아이보리">
-        <div class="product-body">
-          <div class="tag">MONO</div>
-          <p class="name">모노 플라워 플리츠 탑 (아이보리)</p>
-          <p class="sub">아이보리와 블랙 패턴 조합의 깔끔한 포인트 스타일</p>
-          <div class="price">₩79,000</div>
-          <button class="buy" onclick="buyProduct('모노 플라워 플리츠 탑 (아이보리)')">구매하기</button>
-        </div>
-      </div>
-
-      <div class="product-card">
-        <img src="Weixin%20Image_20260407164305_54_461.jpg" alt="모노 플라워 플리츠 탑 그레이">
-        <div class="product-body">
-          <div class="tag">MONO</div>
-          <p class="name">모노 플라워 플리츠 탑 (그레이)</p>
-          <p class="sub">그레이 베이스로 부드럽고 세련된 느낌의 모노 스타일</p>
-          <div class="price">₩79,000</div>
-          <button class="buy" onclick="buyProduct('모노 플라워 플리츠 탑 (그레이)')">구매하기</button>
-        </div>
-      </div>
-
-      <div class="product-card">
-        <img src="Weixin%20Image_20260407164306_55_461.jpg" alt="튤립 플리츠 탑 아이보리">
-        <div class="product-body">
-          <div class="tag">TULIP</div>
-          <p class="name">튤립 플리츠 탑 (아이보리)</p>
-          <p class="sub">세로로 흐르는 튤립 패턴이 세련된 실루엣을 완성</p>
-          <div class="price">₩79,000</div>
-          <button class="buy" onclick="buyProduct('튤립 플리츠 탑 (아이보리)')">구매하기</button>
-        </div>
-      </div>
-
-      <div class="product-card">
-        <img src="Weixin%20Image_20260407164307_56_461.jpg" alt="튤립 플리츠 탑 차콜">
-        <div class="product-body">
-          <div class="tag">TULIP</div>
-          <p class="name">튤립 플리츠 탑 (차콜)</p>
-          <p class="sub">차콜 컬러와 핑크 패턴이 조화로운 감각적인 포인트룩</p>
-          <div class="price">₩79,000</div>
-          <button class="buy" onclick="buyProduct('튤립 플리츠 탑 (차콜)')">구매하기</button>
-        </div>
-      </div>
-
-      <div class="product-card">
-        <img src="Weixin%20Image_20260407164307_57_461.jpg" alt="튤립 플리츠 탑 블랙">
-        <div class="product-body">
-          <div class="tag">TULIP</div>
-          <p class="name">튤립 플리츠 탑 (블랙)</p>
-          <p class="sub">블랙 베이스에 붉은 튤립 패턴이 돋보이는 강렬한 스타일</p>
-          <div class="price">₩79,000</div>
-          <button class="buy" onclick="buyProduct('튤립 플리츠 탑 (블랙)')">구매하기</button>
-        </div>
-      </div>
-
-      <div class="product-card">
-        <img src="Weixin%20Image_20260407164308_58_461.jpg" alt="튤립 플리츠 탑 브라운">
-        <div class="product-body">
-          <div class="tag">TULIP</div>
-          <p class="name">튤립 플리츠 탑 (브라운)</p>
-          <p class="sub">차분한 브라운 베이스로 고급스러운 무드를 담은 디자인</p>
-          <div class="price">₩79,000</div>
-          <button class="buy" onclick="buyProduct('튤립 플리츠 탑 (브라운)')">구매하기</button>
-        </div>
-      </div>
-
-      <div class="product-card">
-        <img src="Weixin%20Image_20260407164309_59_461.jpg" alt="튤립 플리츠 탑 블루">
-        <div class="product-body">
-          <div class="tag">TULIP</div>
-          <p class="name">튤립 플리츠 탑 (블루)</p>
-          <p class="sub">시원한 블루 패턴으로 여름 시즌에 잘 어울리는 탑</p>
-          <div class="price">₩79,000</div>
-          <button class="buy" onclick="buyProduct('튤립 플리츠 탑 (블루)')">구매하기</button>
-        </div>
-      </div>
-
-      <div class="product-card">
-        <img src="Weixin%20Image_20260407164310_60_461.jpg" alt="튤립 플리츠 탑 핑크">
-        <div class="product-body">
-          <div class="tag">TULIP</div>
-          <p class="name">튤립 플리츠 탑 (핑크)</p>
-          <p class="sub">핑크 포인트 컬러가 사랑스러운 분위기를 완성하는 스타일</p>
-          <div class="price">₩79,000</div>
-          <button class="buy" onclick="buyProduct('튤립 플리츠 탑 (핑크)')">구매하기</button>
-        </div>
-      </div>
-
-      <div class="product-card">
-        <img src="Weixin%20Image_20260407164410_61_461.jpg" alt="아트 플리츠 탑 블랙">
-        <div class="product-body">
-          <div class="tag">NEW</div>
-          <p class="name">아트 플리츠 탑 (블랙)</p>
-          <p class="sub">모던하고 시크한 블랙 무드로 완성한 아트 플리츠 탑</p>
-          <div class="price">₩79,000</div>
-          <button class="buy" onclick="buyProduct('아트 플리츠 탑 (블랙)')">구매하기</button>
-        </div>
-      </div>
-
-      <div class="product-card">
-        <img src="Weixin%20Image_20260407164412_62_461.jpg" alt="아트 플리츠 탑 아이보리">
-        <div class="product-body">
-          <div class="tag">NEW</div>
-          <p class="name">아트 플리츠 탑 (아이보리)</p>
-          <p class="sub">밝고 고급스러운 아이보리 베이스의 프리미엄 무드</p>
-          <div class="price">₩79,000</div>
-          <button class="buy" onclick="buyProduct('아트 플리츠 탑 (아이보리)')">구매하기</button>
-        </div>
-      </div>
-
-      <div class="product-card">
-        <img src="Weixin%20Image_20260407164413_63_461.jpg" alt="아트 플리츠 탑 베이지">
-        <div class="product-body">
-          <div class="tag">NEW</div>
-          <p class="name">아트 플리츠 탑 (베이지)</p>
-          <p class="sub">차분한 베이지 컬러감으로 부드럽게 연출하는 스타일</p>
-          <div class="price">₩79,000</div>
-          <button class="buy" onclick="buyProduct('아트 플리츠 탑 (베이지)')">구매하기</button>
-        </div>
-      </div>
-
-      <div class="product-card">
-        <img src="Weixin%20Image_20260407164415_64_461.jpg" alt="아트 플리츠 탑 그레이">
-        <div class="product-body">
-          <div class="tag">NEW</div>
-          <p class="name">아트 플리츠 탑 (그레이)</p>
-          <p class="sub">그레이 컬러로 도시적인 감성을 담아낸 깔끔한 룩</p>
-          <div class="price">₩79,000</div>
-          <button class="buy" onclick="buyProduct('아트 플리츠 탑 (그레이)')">구매하기</button>
-        </div>
-      </div>
-
-      <div class="product-card">
-        <img src="Weixin%20Image_20260407164416_65_461.jpg" alt="아트 플리츠 탑 블루">
-        <div class="product-body">
-          <div class="tag">NEW</div>
-          <p class="name">아트 플리츠 탑 (블루)</p>
-          <p class="sub">시원한 블루 패턴으로 계절감을 살린 포인트 아이템</p>
-          <div class="price">₩79,000</div>
-          <button class="buy" onclick="buyProduct('아트 플리츠 탑 (블루)')">구매하기</button>
-        </div>
-      </div>
-
-      <div class="product-card">
-        <img src="Weixin%20Image_20260407164419_66_461.jpg" alt="아트 플리츠 탑 핑크">
-        <div class="product-body">
-          <div class="tag">NEW</div>
-          <p class="name">아트 플리츠 탑 (핑크)</p>
-          <p class="sub">핑크 무드가 돋보이는 여성스러운 포인트 스타일</p>
-          <div class="price">₩79,000</div>
-          <button class="buy" onclick="buyProduct('아트 플리츠 탑 (핑크)')">구매하기</button>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <section class="section wrap" id="brand">
-    <div class="section-head">
-      <h2>BRAND MESSAGE</h2>
-      <p>꾸미지 않아도 완성되는 스타일, 편안함과 우아함을 동시에 담은 플리츠의 가치를 전합니다.</p>
-    </div>
-    <div class="brand-grid">
-      <div class="brand-box">
-        <h3>우리는 플리츠를<br>중심으로 디자인합니다</h3>
-        <p>KING'S LADY는 일상에서 가장 자연스럽게 빛나는 실루엣을 제안합니다.</p>
-      </div>
-      <div class="brand-box">
-        <h3>단순한 옷이 아닌<br>움직임에 따라 완성되는 가치</h3>
-        <p>가볍고 시원한 착용감, 체형을 부드럽게 커버하는 핏, 그리고 고급스러운 텍스처를 담았습니다.</p>
-      </div>
-    </div>
-  </section>
-
-  <footer class="footer wrap" id="contact">
-    <div class="footer-grid">
-      <div class="footer-box">
-        <h4>KING'S LADY</h4>
-        <p>프리미엄 플리츠 셀렉트 브랜드</p>
-      </div>
-      <div class="footer-box">
-        <h4>CONTACT</h4>
-        <ul>
-          <li>이메일: hharpyeagle@naver.com</li>
-          <li>구매 문의: 이메일 상담</li>
-          <li>응답 방식: 상품명 자동 포함 메일</li>
-        </ul>
-      </div>
-      <div class="footer-box">
-        <h4>COMPANY</h4>
-        <ul>
-          <li>상호명: 주식회사 하피이글</li>
-          <li>대표자: 차유정</li>
-          <li>사업자등록번호: 291-87-02435</li>
-        </ul>
-      </div>
-    </div>
-  </footer>
+<footer>
+COMPANY : KING'S LADY<br>
+CONTACT : hharpyeagle@naver.com<br>
+© 2026 KING'S LADY
+</footer>
 
 <script>
-  function buyProduct(productName, price){
-    const subject = encodeURIComponent("[KING'S LADY] 상품 구매 문의");
-    const body = encodeURIComponent(
-      "안녕하세요.\n\n" +
-      "아래 상품 구매를 원합니다.\n\n" +
-      "상품명: " + productName + "\n" +
-      "가격: " + price + "\n" +
-      "수량: 1개\n\n" +
-      "성함:\n" +
-      "연락처:\n" +
-      "원하시는 색상/옵션:\n" +
-      "배송지:\n\n" +
-      "회신 부탁드립니다.\n감사합니다."
-    );
+function buyProduct(name, price){
+  const text =
+    "안녕하세요, KING'S LADY 입니다.\n\n" +
+    "상품 구매 문의드립니다.\n\n" +
+    "상품명: " + name + "\n" +
+    "가격: " + price + "\n" +
+    "수량: 1개\n\n" +
+    "성함:\n연락처:\n배송지:\n옵션:\n";
 
-    window.location.href =
-      "mailto:hharpyeagle@naver.com?subject=" + subject + "&body=" + body;
-  }
+  const encoded = encodeURIComponent(text);
+
+  window.open("http://pf.kakao.com/_UuxcdX/chat?text=" + encoded);
+}
 </script>
 
 </body>
